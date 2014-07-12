@@ -3,12 +3,12 @@ var path = require('path');
 var gutil = require('gulp-util');
 var through = require('through2');
 var requireLike = require('require-like');
-var jasmineRequire = requireLike(require.resolve('minijasminenode'), true);
+var jasmineRequire = requireLike(require.resolve('minijasminenode2'), true);
 
 module.exports = function (options) {
 	options = options || {};
 
-	var miniJasmineLib = jasmineRequire('minijasminenode');
+	var miniJasmineLib = jasmineRequire('minijasminenode2');
 	var color = process.argv.indexOf('--no-color') === -1;
 	var reporter = options.reporter;
 
@@ -40,6 +40,7 @@ module.exports = function (options) {
 				defaultTimeoutInterval: options.timeout,
 				showColors: color,
 				onComplete: function (arg) {
+console.log(arg);
 					var failedCount = arg.env.currentRunner().results().failedCount;
 
 					if (failedCount > 0) {

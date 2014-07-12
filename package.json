@@ -34,7 +34,7 @@
   ],
   "dependencies": {
     "gulp-util": "^2.2.0",
-    "minijasminenode": "^0.4.0",
+    "minijasminenode2": "^1.0.0",
     "require-like": "^0.1.2",
     "through2": "~0.4.0"
   },
