@@ -27,7 +27,13 @@ module.exports = function (options) {
 			return cb();
 		}
 
-		delete require.cache[require.resolve(path.resolve(file.path))];
+                delete require.cache[require.resolve(path.resolve(file.path))];
+		var files = require.cache[require.resolve(path.resolve(file.path))];
+                if( typeof files !== 'undefined' ) {
+                    for( var i in files.children ) {
+                        delete require.cache[ files.children[i].id ];
+                    }
+                }
 		miniJasmineLib.addSpecs(file.path);
 
 		this.push(file);
